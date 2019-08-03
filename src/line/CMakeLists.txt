@@ -1,4 +1,4 @@
-project(hello)
+project(line)
 
 
 
@@ -7,7 +7,7 @@ set(GC_HEADERS
 )
 
 set(GC_SOURCES
-	main.cpp
+	dda.cpp
 )
 
 
