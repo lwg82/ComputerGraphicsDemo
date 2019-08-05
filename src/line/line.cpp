@@ -48,21 +48,60 @@ void line_dda(int x0, int y0, int x1, int y1, COLORREF clr)
 			y += k;
 		}
 	}
+}
 
-	
+void TestDDA()
+{
+	line_dda(0, 0, 50, 100, RGB(0, 255, 0));
+	line_dda(0, 0, 50, 50, RGB(255, 0, 0));
+}
 
+/**
+ * 中心的画线法 Midpoint Line Drawing Algorithm
+ * F(x,y) = ax + by + c
+ * 0<|k|<=1
+ */
+void midpoint_line_drawing_algorithm(int x0, int y0, int x1, int y1, COLORREF clr)
+{
+	int a = y0 - y1;
+	int b = x1 - x0;
+	int d = 2 * a + b;
+	int deta1 = 2 * a;
+	int deta2 = 2 * (a + b);
+
+	int xp = x0, yp = y0;
+
+	putpixel(xp, yp, clr);
+
+	while (xp < x1)
+	{
+		if (d < 0)
+		{// 选右上点
+			xp++, yp++, d += deta2;
+		}
+		else
+		{// 选右点
+			xp++, d += deta1;
+		}
+
+		putpixel(xp, yp, clr);
+	}
+}
+
+void TestMLDA()
+{
+	midpoint_line_drawing_algorithm(0, 0, 50, 100, RGB(0, 255, 0));
 }
 
 int main(void)
 {
 	initgraph(640, 480);	// 创建绘图窗口，大小为 640x480 像素
-	
+	setbkcolor(RGB(255, 255, 2555));
 	// 设置坐标原点
 	setorigin(320, 240);
 
-	line_dda(0, 0, 50, 100, RGB(0, 255, 0));
-	line_dda(0, 0, 50, 50, RGB(255, 0, 0));
-	
+
+	TestMLDA();
 	
 	
 

@@ -7,7 +7,7 @@ set(GC_HEADERS
 )
 
 set(GC_SOURCES
-	dda.cpp
+	line.cpp
 )
 
 
